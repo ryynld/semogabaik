@@ -96,10 +96,46 @@
       margin-top: 1.5rem;
       font-family: sans-serif;
     }
+
+    /* Tombol musik */
+    .music-btn {
+      position: absolute;
+      top: 1.2rem;
+      right: 1.2rem;
+      z-index: 10;
+      background: none;
+      border: 0.5px solid #ddd;
+      border-radius: 50%;
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: #aaa;
+      font-size: 16px;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .music-btn:hover { border-color: #aaa; color: #555; }
+    .music-btn.playing { color: #e07080; border-color: #e8b0b8; }
+    
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(360deg); }
+    }
+    .music-btn.playing i { animation: spin 3s linear infinite; }
   </style>
 </head>
 <body>
 <div class="stage" id="stage" onclick="nextScene()">
+
+  <!-- Tombol musik -->
+  <button class="music-btn" id="musicBtn" onclick="toggleMusic(event)" title="Putar / pause musik">
+    <i class="ti ti-music" id="musicIcon" aria-hidden="true"></i>
+  </button>
+
+  <audio id="bgMusic" src="Main Theme (From Konatsu and Hiyori).mp3" loop preload="auto"></audio>
+
   <div class="petals-bg" id="petalsContainer"></div>
 
   <div class="scene-box" id="sceneBox">
